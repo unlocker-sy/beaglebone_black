@@ -57,9 +57,14 @@ power(PMIC), reset, memory, power rail, emmc, ethernet, hdmi, usb host, pru core
 https://e2e.ti.com/
   
 회사에서 사용하는 보드는 AM3358을 사용 중인데, I2C1이 통신이 안되는 문제도 있었고,  
-DRAM을 변경하면서 POR이 안되는 문제가 있어서 고생을 했었다.  
+모든 보드는 아니고 몇몇 보드들에서 POR이 안되는 문제가 있어서 고생을 했었다.  
+SPL단에 uart log를 넣어서 확인해보면, DRAM을 init하면서 멈추는 증상이었다.
+  
 I2C1의 경우는 다행히 e2e.ti.com을 보고 해결했는데,  
 DRAM설정의 경우는 진행 중이다. 거의 해결됬으나, DRAM설정 관련해서 확인을 대기 중이다.  
 TI SDK는 이전에 쓰던 다른 SDK보다 u-boot에서 제공해주는 기능이 많고 좋다.  
 코드도 깔끔하고 합리적인 수준이다. 몇몇 버그를 고치면서 미춰버릴뻔하긴 했지만..  
+덕분에 SPL코드도 많이 봤다.  
+평소 cpu, u-boot, spl은 어떻게 시작되는지 궁금했었는데, 코드를 분석해보면서 확실히 알게됬다.  
+이 내용도 올려보면 좋을 듯하다.  
   
