@@ -49,3 +49,15 @@ https://github.com/beagleboard/beaglebone-black/wiki/System-Reference-Manual
 user guide참고  
 power(PMIC), reset, memory, power rail, emmc, ethernet, hdmi, usb host, pru core, usb client등  
 전반적인 내용들에 대해 설명이 잘 되어 있는 편이다.  
+
+
+## Beable bone black등 보드와 관련된 TI FAQ 지원 사이트
+https://e2e.ti.com/
+  
+회사에서 사용하는 보드는 AM3358을 사용 중인데, I2C1이 통신이 안되는 문제도 있었고,  
+DRAM을 변경하면서 POR이 안되는 문제가 있어서 고생을 했었다.  
+I2C1의 경우는 다행히 e2e.ti.com을 보고 해결했는데,  
+DRAM설정의 경우는 진행 중이다. 거의 해결됬으나, DRAM설정 관련해서 확인을 대기 중이다.  
+TI SDK는 이전에 쓰던 다른 SDK보다 u-boot에서 제공해주는 기능이 많고 좋다.  
+코드도 깔끔하고 합리적인 수준이다. 몇몇 버그를 고치면서 미춰버릴뻔하긴 했지만..  
+  
