@@ -1,9 +1,11 @@
 # beaglebone_black
 --------------------------------------------------------------------------------
 시리얼 포트도 별도로 지원되고, 업그레이드도 라즈베리파이에 비해 편하다.  
-꼭 무언가를 구현하지 않아도 u-boot, kernel 코드를 분석해보려고 한다.
-
-
+꼭 무언가를 구현하지 않아도 u-boot, kernel 코드를 분석해보려고 한다.  
+코드를 올리기 보다는 문제를 해결했던 것들,  
+usb, 저전력모드, wifi, ethernet 등 관심있는 드라이버들을 분석해보면 좋을 듯하다.  
+  
+  
 ## wiki
 --------------------------------------------------------------------------------
 ### sdk download
@@ -14,7 +16,7 @@ https://www.ti.com/tool/download/PROCESSOR-SDK-LINUX-AM335X
   
  - 아래 페이지의 실행파일로 설치하면, yocto build 필요없이 make만으로 전체 빌드가 가능하다.  
 https://software-dl.ti.com/processor-sdk-linux/esd/docs/07_03_00_005/linux/Overview/Download_and_Install_the_SDK.html
-    
+  
   
 ### build
 https://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Overview_Building_the_SDK.html#overview-building-the-sdk
