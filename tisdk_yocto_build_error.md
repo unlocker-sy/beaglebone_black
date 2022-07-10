@@ -183,3 +183,21 @@ vim ../sources/meta-ti/recipes-bsp/u-boot/u-boot-ti.inc
 UBOOT_LOCALVERSION = "-g${@d.getVar('SRCPV', True).split('+')[1]}"
 ~~~  
   
+### 참고
+git대신 https로 변경하는 방법.  
+아래처럼 수정했었던 것 같은데, 기억이 안난다.  
+다시 새로 받아서 빌드해봐야할 듯.. ㅠㅠ  
+~~~
+git config --global url."https://github.com/".insteadOf git://github.com/
+
+git config --global url."https://github.com/".insteadOf git://github.com/
+
+
+아래 처럼오타나면 git config --list으로 현재 대체 주소문자열 확인
+git config --global url."https://github.com:".insteadOf git://github.com/
+
+아래 명령처럼 unset함..
+git config --global --unset user.email
+git config --global --unset url."https://github.com:".insteadOf으로 해제한 후에
+다시 아래 명령.
+~~~
