@@ -66,14 +66,34 @@ python3를 설치해주면 된다. --> docker파일에 추가
   
   
 ### conf/sanity.conf파일 추가
-yocto build는 사용자 계정으로 실행되어야하는데 docker로 실행하면 root로 실행되기 때문에 error가 발생한다.  
-아래 url을 보면 conf/sanity.conf를 추가하면 된다고 한다.
-https://tutorialadda.com/blog/oe-core-s-config-sanity-checker-error-in-yocto-project
-sy@ubuntu:~/Work/bbb/tisdk/build$ touch conf/sanity.conf
-
+어떤 레시피를 빌드할 것인지는 아래 url을 참고.  
 https://software-dl.ti.com/processor-sdk-linux/esd/docs/07_03_00_005/linux/Overview_Building_the_SDK.html
+  
+bitbake실행, error가 발생한다.  
+~~~
+sy@ubuntu:~/Work/bbb/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
+sy@ubuntu:~/Work/am335x/sdk/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
+NOTE: Bitbake server didn't start within 5 seconds, waiting for 90
+NOTE: Your conf/bblayers.conf has been automatically updated.
+NOTE: Your conf/bblayers.conf has been automatically updated.
+ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
+    Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
+    Following is the list of potential problems / advisories:
 
-
+    Your Python 3 is not a full install. Please install the module distutils.sysconfig (see the Getting Started guide for further information).
+~~~
+  
+  
+아래 url을 보면 conf/sanity.conf를 추가하면 된다고 한다.  
+https://tutorialadda.com/blog/oe-core-s-config-sanity-checker-error-in-yocto-project
+  
+~~~
+sy@ubuntu:~/Work/bbb/tisdk/build$ touch conf/sanity.conf
+sy@ubuntu:~/Work/bbb/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
+~~~
+  
+  
+  
 ## long build.. build error 발생
 do_fetch 중에 error가 발생한다.  
 몇몇 package의 경우 repository url이 발생해서 그렇다.    
@@ -82,6 +102,7 @@ do_fetch 중에 error가 발생한다.
   
   
 ## arago sdk(하지 않는 것이 좋다.. 참고만..)
+~~~
 $ git clone git://arago-project.org/git/projects/oe-layersetup.git tisdk
 $ cd tisdk
 $ ./oe-layertool-setup.sh -f configs/processor-sdk/processor-sdk-<version>-config.txt
@@ -105,16 +126,21 @@ $ . conf/setenv
 $ export TOOLCHAIN_PATH_ARMV7=$HOME/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf
 $ export TOOLCHAIN_PATH_ARMV8=$HOME/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu
 $ MACHINE=am335x-evm bitbake arago-core-tisdk-bundle
-error난다. arago-core-tisdk-bundle레시피 이름이 변경되어서 그렇다.
+~~~
+  
+error난다. arago-core-tisdk-bundle레시피 이름이 변경되어서 그렇다.  
+~~~
 find . -name *.bb |grep arago
 find . -name *.bb |grep bun
 sy@ubuntu:~/Work/bbb/tisdk$ find . -name *.bb |grep bundle
 ./sources/meta-arago/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
 recipe이름이 tisdk-core-bundle로 바뀐듯하다.
-아래 명령으로 bitbake하면 된다.
+~~~
+  
+아래 명령으로 bitbake하면 된다.  
+~~~
 sy@ubuntu:~/Work/bbb/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
 sy@ubuntu:~/Work/am335x/sdk/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
-~~~
 NOTE: Bitbake server didn't start within 5 seconds, waiting for 90
 NOTE: Your conf/bblayers.conf has been automatically updated.
 NOTE: Your conf/bblayers.conf has been automatically updated.
@@ -124,5 +150,9 @@ ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
 
     Your Python 3 is not a full install. Please install the module distutils.sysconfig (see the Getting Started guide for further information).
 ~~~
+
+빌드에러가 발생한다. sanity.conf파일을 추가해주면 된다.
+~~~
 sy@ubuntu:~/Work/am335x/sdk/tisdk/build$ touch conf/sanity.conf
 sy@ubuntu:~/Work/am335x/sdk/tisdk/build$ MACHINE=am335x-evm bitbake tisdk-core-bundle
+~~~
